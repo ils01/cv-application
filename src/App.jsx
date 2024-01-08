@@ -25,14 +25,14 @@ function App() {
 
     return (
         <div className="App">
-            {/* <CategoryInPersonal title={"Personal details"}>
+            <CategoryIn personal={true} title={"Personal details"}>
                 <CategoryInItem>
                     <Input id={'fullname'} label={'Full Name'} value={fullName} setValue={setFullName}></Input>
                     <Input id={'email'} label={'Email'} value={email} setValue={setEmail}></Input>
                     <Input id={'phonenumber'} label={'Phone number'} value={phoneNumber} setValue={setPhoneNumber}></Input>
                     <Input id={'address'} label={'Address'} value={address} setValue={setAddress}></Input>
                 </CategoryInItem>
-            </CategoryInPersonal> */}
+            </CategoryIn>
 
             <CategoryIn items={educations} setItems={setEducations} title={"Education"} template={educationsTemplate} canAddMore={true}>
             </CategoryIn>
