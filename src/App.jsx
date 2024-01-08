@@ -37,6 +37,7 @@ function App() {
             startDate: 'this June',
             endDate: 'hope never',
             description: '<textarea> </textarea>',
+            location: 'spiritual realm',
             visible: true
         }
     ]);
@@ -56,14 +57,14 @@ function App() {
         setAddress("123 Sesame Street, Imaginary Town");
         setEducations([{
             id: uuidv4(),
-            school: 'london state university',
+            school: 'London state university',
             degree: 'bachelor',
             startDate: '1975',
             endDate: '1979',
             location: 'San Francisco',
             visible: true
         },
-        { id: uuidv4(), school: 'harvard school', degree: 'major', visible: false }]);
+        { id: uuidv4(), school: 'Harvard school', startDate: 2019, endDate: 2022, location: 'Harvard', degree: 'major', visible: false }]);
         setExperiences([{
             id: uuidv4(),
             companyName: 'Pacifico',
