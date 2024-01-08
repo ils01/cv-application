@@ -16,18 +16,64 @@ function App() {
     const educationTemplate = { 'School': 'school', 'Degree': 'degree', 'Start Date': 'startDate', 'End Date': 'endDate', 'Location': 'location' };
     const [educations, setEducations] = useState([{
         id: uuidv4(),
-        school: 'london state university',
-        degree: 'bachelor',
+        school: 'London State University',
+        degree: 'Bachelor',
+        startDate: '1975',
+        endDate: '1979',
+        location: 'San Francisco',
         visible: true
     },
-    { id: uuidv4(), school: 'harvard school', degree: 'major', visible: false }]);
+    { id: uuidv4(), school: 'Harvard school', startDate: 2019, endDate: 2022, location: 'Harvard', degree: 'major', visible: false }]);
 
     const experienceTemplate = {
         'Company Name': 'companyName',
         'Position Title': 'positionTitle', 'StartDate': 'startDate', 'End Date': 'endDate', 'Location': 'location', 'Description': 'description'
     };
-    const [experiences, setExperiences] = useState([]);
-
+    const [experiences, setExperiences] = useState([
+        {
+            id: uuidv4(),
+            companyName: 'Pacifico',
+            positionTitle: 'CEO of CEOs',
+            startDate: 'this June',
+            endDate: 'hope never',
+            description: '<textarea> </textarea>',
+            visible: true
+        }
+    ]);
+    function clearResume() {
+        setFullName("");
+        setEmail("");
+        setPhoneNumber("");
+        setAddress("");
+        setEducations([]);
+        setExperiences([]);
+    }
+    function loadDefaultsResume() {
+        clearResume();
+        setFullName('Arnoldo NoodleDoodle');
+        setEmail("arnoldo.noodledoodle@example.com");
+        setPhoneNumber("+44 7700 900123");
+        setAddress("123 Sesame Street, Imaginary Town");
+        setEducations([{
+            id: uuidv4(),
+            school: 'london state university',
+            degree: 'bachelor',
+            startDate: '1975',
+            endDate: '1979',
+            location: 'San Francisco',
+            visible: true
+        },
+        { id: uuidv4(), school: 'harvard school', degree: 'major', visible: false }]);
+        setExperiences([{
+            id: uuidv4(),
+            companyName: 'Pacifico',
+            positionTitle: 'CEO of CEOs',
+            startDate: 'this June',
+            endDate: 'hope never',
+            description: '<textarea> </textarea>',
+            visible: true
+        }]);
+    }
     return (
         <div className="App">
             <header>
@@ -35,6 +81,10 @@ function App() {
             </header>
             <main>
                 <div className="column column_in">
+                    <div className='button-row'>
+                        <button className='button' onClick={clearResume}>clear resume</button>
+                        <button className='button' onClick={loadDefaultsResume}>load example</button>
+                    </div>
                     <CategoryIn personal={true} title={"Personal details"} >
                         <Input id={'fullname'} label={'Full Name'} value={fullName} setValue={setFullName}></Input>
                         <Input id={'email'} label={'Email'} value={email} setValue={setEmail}></Input>

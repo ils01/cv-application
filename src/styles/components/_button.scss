@@ -45,12 +45,12 @@
 	}
 }
 
-form:has(.form__btns) {
+form:has(.button-row) {
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
 	border-bottom: 1px dashed black;
 }
-.form__btns {
+.button-row {
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
