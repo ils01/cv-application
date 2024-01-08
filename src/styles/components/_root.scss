@@ -1,0 +1,16 @@
+@use "../utils/variables" as vars;
+
+body {
+	background-color: vars.$bg-light;
+	padding: 2rem 2rem 0 2rem;
+}
+
+main {
+	max-width: 1600px;
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	gap: 2rem;
+	place-content: center;
+	margin-inline: auto;
+	outline: 1px solid black;
+}

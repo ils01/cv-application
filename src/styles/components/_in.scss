@@ -1,0 +1,71 @@
+@use "../utils/variables" as vars;
+
+.column_in {
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	color: vars.$dark;
+}
+.category-in {
+	background-color: vars.$bg-white;
+	padding: 0;
+	border-radius: 1rem;
+	border: 1px solid vars.$dark;
+	box-shadow: -5px 5px 0 vars.$navy;
+
+	#{&}__body {
+		padding: 0 2rem 2rem 2rem;
+	}
+}
+.category_personal > .category-in__title {
+	background-color: vars.$bg-light-blue;
+}
+.category-in__title {
+	margin-bottom: 1rem;
+	padding: 0.75rem 2rem 0.75rem 2rem;
+	font-size: 1.65rem;
+	border-radius: 1rem 1rem 0 0;
+
+	background-color: vars.$bg-light-green;
+
+	border-bottom: 1px dashed vars.$navy;
+}
+.input-cont {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	margin-top: 1.25rem;
+
+	#{&}__label {
+		margin-left: 0.15em;
+		font-size: 1.15em;
+		font-weight: vars.$fw-bold;
+	}
+	& > input {
+		padding: 0.25em 0.5em 0.25em 0.5em;
+		border: 1px solid vars.$dark;
+		border-radius: 0.5em;
+	}
+}
+.category-in__list {
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+.category-in__item {
+	> .item__btns {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.5rem;
+		> *:hover {
+			background-color: vars.$lightgray;
+		}
+		> :first-child {
+			flex: 1;
+			text-align: left;
+		}
+	}
+}

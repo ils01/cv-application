@@ -1,0 +1,57 @@
+@use "../utils/variables" as vars;
+
+.button {
+	background-color: transparent;
+	border: 1px solid vars.$navy;
+	padding: 0.45em 1em 0.45em 1em;
+	border-radius: 1em;
+	font-weight: bold;
+}
+
+.button:hover {
+	cursor: pointer;
+	box-shadow: -2px 2px 0 vars.$navy;
+	transform: translate(1px, -1px);
+	transition: all 0.15s ease-in-out;
+}
+.button_add-more,
+.button_delete,
+.button_ok {
+	margin-top: 1rem;
+}
+.button_add-more {
+	background-color: vars.$bg-light-green;
+}
+
+.button_delete {
+	background-color: vars.$darkred;
+}
+
+.button_ok {
+	background-color: vars.$bg-light-blue;
+}
+
+.button:has(.bi) {
+	// padding: 1rem;
+	min-height: 2.55rem;
+
+	position: relative;
+	> .bi {
+		position: absolute;
+		top: 20%;
+		left: 20%;
+		width: 60%;
+		height: 60%;
+	}
+}
+
+form:has(.form__btns) {
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px dashed black;
+}
+.form__btns {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
