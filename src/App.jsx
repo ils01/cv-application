@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { CategoryIn } from './components/in/CategoryIn';
 import { CategoryInItem } from './components/in/CategoryInItem';
@@ -16,10 +17,11 @@ function App() {
 
     const educationsTemplate = { 'School': 'school', 'Degree': 'degree', 'Start Date': 'startDate', 'End Date': 'endDate', 'Location': 'location' };
     const [educations, setEducations] = useState([{
-        school: 'london',
+        id: uuidv4(),
+        school: 'london state university',
         degree: 'bachelor'
     },
-    { school: 'harvard', degree: 'major' }]);
+    { id: uuidv4(), school: 'harvard school', degree: 'major' }]);
 
     return (
         <div className="App">
