@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useRef } from "react";
 import { Input } from "./Input";
-function CategoryIn({ items, setItems, title, template, canAddMore = true, personal = false, children }) {
+function CategoryIn({ items, setItems, title, template, personal = false, children }) {
     if (personal) {
         return (
             <div>
@@ -17,7 +17,7 @@ function CategoryIn({ items, setItems, title, template, canAddMore = true, perso
         ul = (
             <ul>
                 {items.map(item => {
-                    return <Item key={item.id} items={items} item={item} setItems={setItems} template={template} selectedId={selectedId} setSelectedId={setSelectedId}></Item>
+                    return <CategoryInItem key={item.id} items={items} item={item} setItems={setItems} template={template} selectedId={selectedId} setSelectedId={setSelectedId}></CategoryInItem>
                 })}
             </ul>
         )
@@ -28,9 +28,8 @@ function CategoryIn({ items, setItems, title, template, canAddMore = true, perso
         <div className="categoryIn">
             <h2>{title}</h2>
             {ul}
-
             {selectedId === -1 && <CategoryFormAdd items={items} setItems={setItems} template={template} setSelectedId={setSelectedId}></CategoryFormAdd>}
-            {canAddMore ? <AddMore title={title} setSelectedId={setSelectedId}></AddMore> : null}
+            <AddMore title={title} setSelectedId={setSelectedId}></AddMore>
         </div>
     )
 }
@@ -66,7 +65,7 @@ function CategoryFormAdd({ items, setItems, template, setSelectedId }) {
     )
 }
 
-function Item({ items, item, setItems, template, selectedId, setSelectedId }) {
+function CategoryInItem({ items, item, setItems, template, selectedId, setSelectedId }) {
     return (
         <li>
             <button onClick={() => setSelectedId(prevId => {

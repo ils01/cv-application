@@ -10,18 +10,24 @@ import { Output } from './components/out/Output';
 import './styles/style.scss';
 
 function App() {
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [address, setAddress] = useState("");
+    const [fullName, setFullName] = useState("Arnoldo NoodleDoodle");
+    const [email, setEmail] = useState("arnoldo.noodledoodle@example.com");
+    const [phoneNumber, setPhoneNumber] = useState("+44 7700 900123");
+    const [address, setAddress] = useState("123 Sesame Street, Imaginary Town");
 
-    const educationsTemplate = { 'School': 'school', 'Degree': 'degree', 'Start Date': 'startDate', 'End Date': 'endDate', 'Location': 'location' };
+    const educationTemplate = { 'School': 'school', 'Degree': 'degree', 'Start Date': 'startDate', 'End Date': 'endDate', 'Location': 'location' };
     const [educations, setEducations] = useState([{
         id: uuidv4(),
         school: 'london state university',
         degree: 'bachelor'
     },
     { id: uuidv4(), school: 'harvard school', degree: 'major' }]);
+
+    const experienceTemplate = {
+        'Company Name': 'companyName',
+        'Position Title': 'positionTitle', 'StartDate': 'startDate', 'End Date': 'endDate', 'Location': 'location', 'Description': 'description'
+    };
+    const [experiences, setExperiences] = useState([]);
 
     return (
         <div className="App">
@@ -34,17 +40,20 @@ function App() {
                 </CategoryInItem>
             </CategoryIn>
 
-            <CategoryIn items={educations} setItems={setEducations} title={"Education"} template={educationsTemplate} canAddMore={true}>
+            <CategoryIn items={educations} setItems={setEducations} title={"Education"} template={educationTemplate} canAddMore={true}>
+            </CategoryIn>
+            <CategoryIn items={experiences} setItems={setExperiences} title={"Experience"} template={experienceTemplate} canAddMore={true}>
             </CategoryIn>
 
-            <CategoryOut>
-                <CategoryOutItem>
+            <CategoryOut personal={true}>
+                <div>
                     <Output value={fullName}></Output>
                     <Output value={email}></Output>
                     <Output value={phoneNumber}></Output>
                     <Output value={address}></Output>
-                </CategoryOutItem>
+                </div>
             </CategoryOut>
+            <CategoryOut items={educations} title="Education" template={educationTemplate}></CategoryOut>
         </div>
     )
 }

@@ -1,9 +1,12 @@
-function CategoryOutItem({ title = "", children }) {
+function CategoryOutItem({ item, template }) {
+    if (!item) {
+        return <></>;
+    }
     return (
         <div>
-            {title !== "" ? <h2>title</h2> : null}
-
-            {children}
+            {Object.values(template).map(key => {
+                return <p key={key}>{item[key]}</p>
+            })}
         </div>
     )
 }
