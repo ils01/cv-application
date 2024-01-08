@@ -28,42 +28,12 @@ function CategoryIn({ items, setItems, title, template, personal = false, childr
         <div className="categoryIn">
             <h2>{title}</h2>
             {ul}
-            {selectedId === -1 && <CategoryFormAdd items={items} setItems={setItems} template={template} setSelectedId={setSelectedId}></CategoryFormAdd>}
-            <AddMore title={title} setSelectedId={setSelectedId}></AddMore>
+            {/* {selectedId === -1 && <CategoryFormAdd items={items} setItems={setItems} template={template} setSelectedId={setSelectedId}></CategoryFormAdd>} */}
+            <AddMore title={title} setSelectedId={setSelectedId} items={items} setItems={setItems} template={template}></AddMore>
         </div>
     )
 }
 
-
-function CategoryFormAdd({ items, setItems, template, setSelectedId }) {
-    const formRef = useRef();
-    return (
-        <form action="" ref={formRef}>
-            {Object.keys(template).map(field => {
-                return (
-                    <Input key={field} id={template[field]} label={field} value={items} setValue={setItems}></Input>
-                )
-            })}
-            <button onClick={(e) => {
-                e.preventDefault()
-                let formData = new FormData(formRef.current);
-                let newItem = {};
-                newItem['id'] = uuidv4();
-                [...formData].map((field) => {
-                    newItem[field[0]] = field[1];
-                })
-                setItems([...items, newItem]);
-                formRef.current.reset();
-            }}>add</button>
-            <button onClick={
-                (e) => {
-                    e.preventDefault();
-                    setSelectedId(null)
-                }
-            }>cancel</button>
-        </form >
-    )
-}
 
 function CategoryInItem({ items, item, setItems, template, selectedId, setSelectedId }) {
     return (
@@ -76,7 +46,13 @@ function CategoryInItem({ items, item, setItems, template, selectedId, setSelect
                     newId = item.id;
                 }
                 return newId;
-            })}>{Object.values(item)[1]}</button>
+            })}>{item[Object.values(template)[0]]}</button>
+            <button onClick={(e) => {
+                let newItems = [...items];
+                let itemIndex = newItems.findIndex(itm => itm.id === item.id);
+                newItems[itemIndex].visible = !newItems[itemIndex].visible;
+                setItems(newItems);
+            }}>eye</button>
             {selectedId === item.id &&
                 <CategoryFormEdit items={items} item={item} setItems={setItems} template={template} setSelectedId={setSelectedId}></CategoryFormEdit>}
         </li>
@@ -104,17 +80,24 @@ function CategoryFormEdit({ items, item, setItems, template, setSelectedId }) {
     )
 }
 
-function AddMore({ title, setSelectedId }) {
+function AddMore({ title, setSelectedId, items, setItems, template }) {
+
     return (
-        <button onClick={() => setSelectedId(prevId => {
-            let newId = prevId;
-            if (newId === -1) {
-                newId = null;
-            } else {
-                newId = -1;
-            }
-            return newId;
-        })}>+ {title}</button>
+        <button onClick={() => {
+            const newId = uuidv4();
+            let newItem = {
+                id: newId,
+                visible: true
+            };
+            Object.values(template).map(value => {
+                newItem[value] = "";
+            });
+            let newItems = [...items];
+            newItems.push(newItem);
+            setItems(newItems);
+            setSelectedId(newId);
+        }}>+ {title}</button>
+
     )
 }
 

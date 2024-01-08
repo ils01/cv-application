@@ -19,9 +19,10 @@ function App() {
     const [educations, setEducations] = useState([{
         id: uuidv4(),
         school: 'london state university',
-        degree: 'bachelor'
+        degree: 'bachelor',
+        visible: true
     },
-    { id: uuidv4(), school: 'harvard school', degree: 'major' }]);
+    { id: uuidv4(), school: 'harvard school', degree: 'major', visible: false }]);
 
     const experienceTemplate = {
         'Company Name': 'companyName',

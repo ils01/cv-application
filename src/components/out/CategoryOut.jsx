@@ -12,7 +12,7 @@ function CategoryOut({ personal = false, title = "", items, children, template }
         return (
             <div>
                 <h2>{title}</h2>
-                {items.length > 0 && items.map(item => {
+                {items.length > 0 && items.filter(item => item.visible).map(item => {
                     return <CategoryOutItem key={item.id} item={item} template={template}></CategoryOutItem>
                 })}
             </div>
